@@ -1,7 +1,3 @@
-Berikut adalah format Markdown (`.md`) yang rapi dan siap kamu *copy-paste* ke dalam file `README.md` atau langsung ke platform blog kamu. Laporan ini disusun berdasarkan analisis file final di VS Code dan implementasi yang telah kita lakukan.
-
------
-
 # Laporan Proyek: Frontend & Backend Development
 
 **Sistem Informasi Florist "Puspa"** dikembangkan menggunakan pendekatan *Native PHP Hybrid*, di mana logika antarmuka (*Frontend*) dan logika server (*Backend*) terintegrasi dalam satu arsitektur aplikasi (*Monolithic*). Berikut adalah rincian teknis implementasinya.
