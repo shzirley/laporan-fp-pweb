@@ -1,3 +1,9 @@
+Berikut adalah **Laporan Lengkap Proyek** yang telah diperbarui. Saya telah menggabungkan bagian Frontend, Backend, Database, dan menambahkan bagian **Integrasi API** (Nomor 3) sesuai dengan teks yang Anda berikan, namun dengan format yang lebih rapi dan teknis.
+
+Silakan salin seluruh kode di bawah ini ke file `.md` Anda.
+
+-----
+
 # Laporan Proyek: Implementasi Teknis Sistem Florist
 
 **Sistem Informasi Florist "Puspa"** dikembangkan menggunakan pendekatan *Native PHP Hybrid*, di mana logika antarmuka (*Frontend*) dan logika server (*Backend*) terintegrasi dalam satu arsitektur aplikasi (*Monolithic*). Berikut adalah rincian teknis implementasinya.
@@ -135,7 +141,6 @@ Tabel-tabel ini menangani interaksi pengguna dengan produk. Keunggulan skema ini
   * **Tabel `reviews` (Ulasan & Rating)**
       * **Fungsi:** *Social Proof* untuk meningkatkan kepercayaan pembeli.
       * **Struktur Unik:** Tabel ini menyimpan `user_name` dan `user_avatar` secara manual (*snapshot*), bukan hanya `user_id`.
-          * *Alasan Teknis:* Jika user mengganti nama profilnya di masa depan, nama pada ulasan lama tetap otentik sesuai saat ulasan tersebut ditulis.
       * **Relasi:** Terikat pada `products`. Jika produk dihapus, semua ulasannya ikut terhapus.
   * **Tabel `product_images` (Galeri Multi-Gambar)**
       * **Fungsi:** Mendukung fitur galeri (*Carousel*), di mana satu jenis bunga bisa memiliki banyak sudut foto.
@@ -163,25 +168,30 @@ Dalam file SQL, semua *Foreign Key* menggunakan aturan `ON DELETE CASCADE`.
 FOREIGN KEY (product_id) REFERENCES products(id) ON DELETE CASCADE
 ```
 
-**Dampak Teknis:** Ini adalah fitur *"Self-Cleaning"*. Admin tidak perlu menghapus data secara manual satu per satu. Jika admin menghapus produk "Mawar Merah", maka secara otomatis:
+**Dampak Teknis:** Ini adalah fitur *"Self-Cleaning"*. Admin tidak perlu menghapus data secara manual satu per satu. Jika admin menghapus produk "Mawar Merah", maka secara otomatis semua data terkait (foto galeri, ulasan, item di keranjang user) akan ikut terhapus. Hal ini menjaga database tetap bersih dari sampah data (*Orphan Records*).
 
-  * Foto-foto galeri mawar merah terhapus.
-  * Ulasan mawar merah terhapus.
-  * Mawar merah di keranjang belanja user akan hilang.
-  * **Hasil:** Database selalu bersih dari sampah data (*Orphan Records*).
+-----
 
-### C. Konfigurasi Koneksi & Keamanan
+## 3\. Integrasi Application Programming Interface (API)
 
-Koneksi database diatur dalam file `config.php` dengan parameter teknis sebagai berikut:
+Dalam pengembangan sistem informasi **Puspa Florist**, integrasi API (*Application Programming Interface*) diterapkan untuk menangani dua fungsi krusial: autentikasi pengguna dan pemrosesan pembayaran. Sistem ini bertindak sebagai *client* yang mengonsumsi layanan dari penyedia pihak ketiga, yaitu Google dan Midtrans, guna meningkatkan efisiensi pengembangan dan keamanan data.
 
-1.  **Driver `mysqli` (MySQL Improved):** Menggunakan antarmuka *Object-Oriented* yang mendukung *Prepared Statements*. Ini adalah lapisan keamanan pertama untuk mencegah serangan **SQL Injection**.
-2.  **Port Spesifik (3307):** Dikarenakan lingkungan pengembangan menggunakan XAMPP yang sering mengalami konflik port default (3306), konfigurasi diset secara eksplisit ke port **3307**.
-3.  **Protokol TCP/IP (`127.0.0.1`):** Penggunaan IP Loopback `127.0.0.1` alih-alih `localhost` memaksa koneksi menggunakan protokol jaringan TCP/IP, yang terbukti lebih stabil pada sistem operasi Windows.
+### A. Google OAuth 2.0 untuk Autentikasi
 
-### D. Seeding Data (Data Awal)
+Sistem menggunakan layanan **Google Identity Services** dengan protokol OAuth 2.0 untuk fitur login. Implementasi ini memanfaatkan pustaka `google/apiclient` yang dikonfigurasi pada file `config.php` menggunakan *Client ID* dan *Client Secret* yang terdaftar di Google Cloud Console.
 
-Untuk keperluan pengembangan dan demonstrasi, database telah diisi (*seeded*) dengan data dummy yang komprehensif:
+**Mekanisme Alur (*Authorization Code Flow*):**
 
-  * **6 Produk Utama:** Lengkap dengan harga, stok, deskripsi, dan nama file gambar.
-  * **Galeri:** Setiap produk memiliki 3 foto tambahan di tabel `product_images`.
-  * **Ulasan:** Setiap produk memiliki 2-3 ulasan dengan variasi rating bintang 4 dan 5 untuk simulasi tampilan frontend yang realistis.
+1.  **Request:** Saat pengguna memilih masuk dengan Google, sistem mengarahkan pengguna ke halaman persetujuan Google.
+2.  **Callback:** Setelah disetujui, Google mengembalikan *authorization code* ke endpoint **`google_callback.php`**.
+3.  **Token Exchange:** Sistem kemudian menukarkan kode tersebut dengan *Access Token* untuk mendapatkan informasi profil pengguna (email, nama, dan foto).
+4.  **Session:** Data profil disimpan ke dalam basis data lokal (`users`) sebagai sesi login aktif.
+
+### B. Midtrans Snap untuk Gerbang Pembayaran
+
+Untuk memfasilitasi transaksi non-tunai, sistem terintegrasi dengan **Midtrans Payment Gateway** menggunakan tipe integrasi *Snap*. Integrasi ini memungkinkan jendela pembayaran muncul secara *pop-up* (overlay) di halaman checkout tanpa mengalihkan pengguna keluar dari website.
+
+**Alur Teknis:**
+
+1.  **Backend (`checkout.php`):** Sistem mengalkulasi total belanja dan biaya tambahan, lalu mengirimkan data tersebut dalam bentuk *payload JSON* ke server Midtrans.
+2.  **Frontend:** Respon dari API Midtrans berupa **Snap Token** kemudian digunakan oleh fungsi JavaScript `window.snap.pay()` di sisi frontend untuk memunculkan antarmuka pembayaran yang aman dan mendukung berbagai metode pembayaran (GoPay, Virtual Account, Kartu Kredit).
