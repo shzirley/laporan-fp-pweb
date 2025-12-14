@@ -1,9 +1,3 @@
-Berikut adalah **Laporan Lengkap Proyek** yang telah diperbarui. Saya telah menggabungkan bagian Frontend, Backend, Database, dan menambahkan bagian **Integrasi API** (Nomor 3) sesuai dengan teks yang Anda berikan, namun dengan format yang lebih rapi dan teknis.
-
-Silakan salin seluruh kode di bawah ini ke file `.md` Anda.
-
------
-
 # Laporan Proyek: Implementasi Teknis Sistem Florist
 
 **Sistem Informasi Florist "Puspa"** dikembangkan menggunakan pendekatan *Native PHP Hybrid*, di mana logika antarmuka (*Frontend*) dan logika server (*Backend*) terintegrasi dalam satu arsitektur aplikasi (*Monolithic*). Berikut adalah rincian teknis implementasinya.
@@ -195,3 +189,20 @@ Untuk memfasilitasi transaksi non-tunai, sistem terintegrasi dengan **Midtrans P
 
 1.  **Backend (`checkout.php`):** Sistem mengalkulasi total belanja dan biaya tambahan, lalu mengirimkan data tersebut dalam bentuk *payload JSON* ke server Midtrans.
 2.  **Frontend:** Respon dari API Midtrans berupa **Snap Token** kemudian digunakan oleh fungsi JavaScript `window.snap.pay()` di sisi frontend untuk memunculkan antarmuka pembayaran yang aman dan mendukung berbagai metode pembayaran (GoPay, Virtual Account, Kartu Kredit).
+
+---
+Berikut adalah format Markdown (`.md`) untuk bagian **Pembagian Jobdesk**. Tabel ini sudah dirapikan agar mudah dibaca dan sesuai dengan struktur laporan teknis sebelumnya.
+
+Silakan salin kode di bawah ini:
+
+-----
+
+## 4\. Pembagian Jobdesk (Tim Pengembang)
+
+Untuk memastikan efisiensi kerja dan spesialisasi teknis, tim pengembang membagi tanggung jawab berdasarkan peran utama (*Role*) sebagai berikut:
+
+| Nama Anggota & NRP | Role Utama | Rincian Tanggung Jawab (Jobdesk) |
+| :--- | :--- | :--- |
+| **Maleka Ghaniya**<br>(5025241189) | Frontend Designer & UI/UX | • Pengembangan *Landing Page* (`index.php`)<br>• *Styling* Global (`style.css`) & *Branding* (Logo/Aset)<br>• Penyusunan Laporan & Dokumentasi Awal |
+| **Angela Vania S.**<br>(5025241226) | Frontend Developer | • Pengembangan *Dashboard User* (`dashboard.php`)<br>• Implementasi UI Flow Transaksi (Keranjang, Checkout, Detail Produk)<br>• Pengembangan Halaman Fitur User (Review, Favorit, History) |
+| **Jorell Ramos S.**<br>(5025241202) | Backend Engineer | • Desain Arsitektur Database & Konfigurasi (`config.php`)<br>• Integrasi API Pihak Ketiga (*Google OAuth* & *Midtrans Payment*)<br>• Logika Bisnis (*Search*, *Cart Session*, *Transaction Processing*) |
