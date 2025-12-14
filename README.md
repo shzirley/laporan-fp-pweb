@@ -190,19 +190,14 @@ Untuk memfasilitasi transaksi non-tunai, sistem terintegrasi dengan **Midtrans P
 1.  **Backend (`checkout.php`):** Sistem mengalkulasi total belanja dan biaya tambahan, lalu mengirimkan data tersebut dalam bentuk *payload JSON* ke server Midtrans.
 2.  **Frontend:** Respon dari API Midtrans berupa **Snap Token** kemudian digunakan oleh fungsi JavaScript `window.snap.pay()` di sisi frontend untuk memunculkan antarmuka pembayaran yang aman dan mendukung berbagai metode pembayaran (GoPay, Virtual Account, Kartu Kredit).
 
----
-Berikut adalah format Markdown (`.md`) untuk bagian **Pembagian Jobdesk**. Tabel ini sudah dirapikan agar mudah dibaca dan sesuai dengan struktur laporan teknis sebelumnya.
-
-Silakan salin kode di bawah ini:
-
 -----
 
 ## 4\. Pembagian Jobdesk (Tim Pengembang)
 
-Untuk memastikan efisiensi kerja dan spesialisasi teknis, tim pengembang membagi tanggung jawab berdasarkan peran utama (*Role*) sebagai berikut:
+Untuk memastikan kelancaran integrasi sistem antara antarmuka dan logika server, tim pengembang membagi tanggung jawab berdasarkan peran utama (*Role*) sebagai berikut:
 
 | Nama Anggota & NRP | Role Utama | Rincian Tanggung Jawab (Jobdesk) |
 | :--- | :--- | :--- |
-| **Maleka Ghaniya**<br>(5025241189) | Frontend Designer & UI/UX | • Pengembangan *Landing Page* (`index.php`)<br>• *Styling* Global (`style.css`) & *Branding* (Logo/Aset)<br>• Penyusunan Laporan & Dokumentasi Awal |
+| **Maleka Ghaniya**<br>(5025241189) | Frontend Designer & UI/UX | • Pengembangan *Landing Page* (`index.php`)<br>• *Styling* Global (`style.css`) & *Branding* (Logo/Aset Visual)<br>• Penyusunan Laporan Proyek & Dokumentasi Awal |
 | **Angela Vania S.**<br>(5025241226) | Frontend Developer | • Pengembangan *Dashboard User* (`dashboard.php`)<br>• Implementasi UI Flow Transaksi (Keranjang, Checkout, Detail Produk)<br>• Pengembangan Halaman Fitur User (Review, Favorit, History) |
-| **Jorell Ramos S.**<br>(5025241202) | Backend Engineer | • Desain Arsitektur Database & Konfigurasi (`config.php`)<br>• Integrasi API Pihak Ketiga (*Google OAuth* & *Midtrans Payment*)<br>• Logika Bisnis (*Search*, *Cart Session*, *Transaction Processing*) |
+| **Jorell Ramos S.**<br>(5025241202) | Fullstack Engineer | • **Backend:** Desain Database, Konfigurasi Server (`config.php`), & Integrasi API (*Google/Midtrans*)<br>• **Frontend Support:** Membantu integrasi logika PHP ke dalam tampilan *Landing Page* (Maleka) & *Dashboard* (Angela)<br>• **System Integration:** *Debugging* isu tampilan (*responsive layout*) dan konektivitas data antar halaman |
