@@ -192,7 +192,60 @@ Untuk memfasilitasi transaksi non-tunai, sistem terintegrasi dengan **Midtrans P
 
 -----
 
-## 4\. Pembagian Jobdesk (Tim Pengembang)
+# 4\. Dokumentasi Sistem & Manajemen Proyek
+
+Bagian ini memuat dokumentasi visual alur kerja sistem, panduan penggunaan aplikasi bagi pengguna akhir (*end-user*), serta pembagian tanggung jawab tim pengembang.
+
+## A. Diagram Alur Sistem (Flowchart)
+
+Untuk memperjelas logika bisnis dan navigasi pengguna, berikut adalah visualisasi alur sistem pada website **Puspa Florist**:
+
+### 1\. Alur Login & Akses Web
+
+Diagram ini menggambarkan mekanisme autentikasi pengguna menggunakan integrasi *Google OAuth 2.0*. Pengguna tidak perlu melakukan registrasi manual; sistem akan otomatis memvalidasi email dan membuat sesi aktif.
+
+### 2\. Alur Belanja & Transaksi
+
+Diagram ini menjelaskan perjalanan pengguna (*User Journey*) mulai dari memilih produk di katalog, memasukkan ke keranjang, hingga penyelesaian pembayaran menggunakan *Midtrans Payment Gateway*.
+
+-----
+
+## B. User Guide (Panduan Pengguna)
+
+Panduan ini menjelaskan tata cara penggunaan sistem **Puspa Florist**, mencakup proses autentikasi, eksplorasi katalog, hingga penyelesaian transaksi.
+
+### 1\. Akses & Autentikasi Akun
+
+Sistem menerapkan kebijakan *login-first* demi keamanan transaksi dan personalisasi pengalaman pengguna.
+
+1.  **Mengakses Halaman Utama:** Buka alamat website Puspa Florist. Pengguna akan disambut oleh *Landing Page* yang menampilkan spanduk promosi dan etalase kategori.
+2.  **Login dengan Google:** Klik tombol **"Login with Google"**. Jendela *pop-up* Google akan muncul. Pilih akun Google (Gmail) yang aktif. Sistem akan memverifikasi kredensial dan mengarahkan pengguna ke **Dashboard** secara otomatis.
+
+### 2\. Eksplorasi Katalog Produk
+
+Setelah login, pengguna diarahkan ke *User Dashboard*.
+
+1.  **Melihat Daftar Produk:** Produk ditampilkan dalam format kartu (*grid view*) yang memuat foto, nama bunga, harga, dan stok.
+2.  **Pencarian:** Gunakan bilah pencarian (*Search Bar*) di bagian atas untuk menyaring produk berdasarkan nama bunga.
+3.  **Detail Produk:** Klik pada kartu produk untuk melihat deskripsi filosofis, galeri foto, dan ulasan pembeli.
+
+### 3\. Transaksi Pembelian
+
+1.  **Menambah ke Keranjang:** Klik tombol keranjang pada produk yang diinginkan.
+2.  **Mengelola Keranjang:** Klik ikon **Keranjang** (`bi-cart`) di menu atas. Pengguna dapat mengubah jumlah item atau menghapus produk yang tidak jadi dibeli.
+3.  **Checkout:** Klik tombol **"Checkout"**. Sistem akan menampilkan ringkasan alamat pengiriman dan total biaya (termasuk biaya layanan).
+4.  **Pembayaran:** Klik **"Bayar Sekarang"**. Jendela *pop-up* **Midtrans** akan muncul. Pilih metode pembayaran (GoPay/VA/QRIS) dan selesaikan transaksi.
+
+### 4\. Manajemen Fitur Pengguna
+
+  * **Riwayat Pesanan:** Memantau status transaksi yang pernah dilakukan.
+  * **Review Saya:** Memberikan rating bintang dan ulasan pada produk yang telah dibeli.
+  * **Produk Favorit:** Mengakses daftar produk yang disimpan dalam *Wishlist*.
+  * **Logout:** Mengakhiri sesi pengguna dengan aman.
+
+-----
+
+## C. Pembagian Jobdesk (Tim Pengembang)
 
 Untuk memastikan kelancaran integrasi sistem antara antarmuka dan logika server, tim pengembang membagi tanggung jawab berdasarkan peran utama (*Role*) sebagai berikut:
 
