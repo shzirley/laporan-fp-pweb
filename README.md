@@ -203,10 +203,12 @@ Untuk memperjelas logika bisnis dan navigasi pengguna, berikut adalah visualisas
 ### 1\. Alur Login & Akses Web
 
 Diagram ini menggambarkan mekanisme autentikasi pengguna menggunakan integrasi *Google OAuth 2.0*. Pengguna tidak perlu melakukan registrasi manual; sistem akan otomatis memvalidasi email dan membuat sesi aktif.
+![Flowchart 1](https://github.com/shzirley/laporan-fp-pweb/blob/main/flowchart_belanja.png?raw=true)
 
 ### 2\. Alur Belanja & Transaksi
 
 Diagram ini menjelaskan perjalanan pengguna (*User Journey*) mulai dari memilih produk di katalog, memasukkan ke keranjang, hingga penyelesaian pembayaran menggunakan *Midtrans Payment Gateway*.
+![Flowchart 2](https://github.com/shzirley/laporan-fp-pweb/blob/main/flowchart_login.png?raw=true)
 
 -----
 
